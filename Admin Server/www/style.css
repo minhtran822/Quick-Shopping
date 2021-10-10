@@ -1,0 +1,40 @@
+body {
+
+  background: rgba(202, 46, 119, 0.397);
+  background-position: center center;
+  width: 50%;
+  padding: 10px;
+  margin: 10px;
+  position: fixed;
+  right: 25%;
+}
+
+.menu{
+  background: rgba(23, 7, 68, 0.377);
+  width: 50%;
+  padding: 10px;
+  margin: 10px;
+  position: relative;
+  left: 25%;
+}
+
+.btn{
+margin-left: 20px;
+margin-right: 20px;
+}
+
+h1, p {
+  text-align: center;
+}
+
+th { text-align: left; }
+
+table, th, td {
+border: 2px solid grey;
+border-collapse: collapse;
+}
+
+th, td {
+padding: 0.2em;
+}
+
