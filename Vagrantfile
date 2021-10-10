@@ -43,22 +43,22 @@ Vagrant.configure("2") do |config|
     override.ssh.private_key_path = "C:\\Users\\tranv\\.ssh\\cosc349-labs-2021.pem"
 
     # Choose your Amazon EC2 instance type (t2.micro is cheap).
-    ##aws.instance_type = "t2.micro"
+    aws.instance_type = "t2.micro"
 
     # You need to indicate the list of security groups your VM should
     # be in. Each security group will be of the form "sg-...", and
     # they should be comma-separated (if you use more than one) within
     # square brackets.
     #
-    ##aws.security_groups = [""]
+    aws.security_groups = ["sg-070fbd48f253a4d9b"]
 
     # For Vagrant to deploy to EC2 for Amazon Educate accounts, it
     # seems that a specific availability_zone needs to be selected
     # (will be of the form "us-east-1a"). The subnet_id for that
     # availability_zone needs to be included, too (will be of the form
     # "subnet-...").
-    ##aws.availability_zone = ""
-    ##aws.subnet_id = ""
+    aws.availability_zone = "us-east-1a"
+    aws.subnet_id = "subnet-06292eed6908f0e05"
 
     # You need to chose the AMI (i.e., hard disk image) to use. This
     # will be of the form "ami-...".
@@ -69,11 +69,11 @@ Vagrant.configure("2") do |config|
     # You need to get the region correct, and the correct form of
     # configuration (probably amd64, hvm:ebs-ssd, hvm).
     #
-    ##aws.ami = ""
+    aws.ami = "ami-036490d46656c4818"
 
     # If using Ubuntu, you probably also need to uncomment the line
     # below, so that Vagrant connects using username "ubuntu".
-    ##override.ssh.username = "ubuntu"
+    override.ssh.username = "ubuntu"
   end
 
   # Enable provisioning with a shell script. Additional provisioners such as
