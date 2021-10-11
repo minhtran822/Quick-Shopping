@@ -1,50 +1,98 @@
-<!DOCTYPE html>
-
-<html lang="en">
-
-<head>
-
-    <title>Home</title>
-
-    <link rel="stylesheet" href="style.css">
-
-</head>
-
-<body>
-    <h1>Chat Forum Admin</h1>
-
-    <p> Writers statistic</p>
-
-    <br>
-
-    <div class = "menu">
-        <a href="new_writer.php" class="btn">Add Writer</a>
-        <a href="http://127.0.0.1:8080/index.php" class="btn"> View Note Centre </a>
-    </div>
-
-    <table border="1">
-    <tr><th>writer ID</th><th>Name</th><th>Contribution</th></tr>
-
 <?php
-    $db_host   = '192.168.2.12';
-    $db_name   = 'fvision';
-    $db_user   = 'webuser';
-    $db_passwd = 'insecure_db_pw';
-
-    $pdo_dsn = "mysql:host=$db_host;dbname=$db_name";
+    require 'dbConnect.php';
+    require_once("initilisationDB.php");
 
 
+    /* If input fields are populated, add a row to the EMPLOYEES table. */
+    $product_name = htmlentities($_POST['name']);
+    $product_code = htmlentities($_POST['code']);
+    $product_image = htmlentities($_POST['image']);
+    $product_price = htmlentities($_POST['price']);
 
-    $pdo = new PDO($pdo_dsn, $db_user, $db_passwd);
+    if (strlen($product_name) || strlen($product_code) || strlen($product_image) || strlen($product_price)) {
+        $n = mysqli_real_escape_string($conn, $product_name);
+        $c = mysqli_real_escape_string($conn, $product_code);
+        $i = mysqli_real_escape_string($conn, $product_image);
+        $p = mysqli_real_escape_string($conn, $product_price);
 
-    $q = $pdo->query("SELECT writer.wid, writer.wname, C.cnt FROM writer LEFT JOIN (SELECT w_id, count(w_id) AS cnt FROM note GROUP BY w_id) C ON writer.wid=C.w_id");
+        $query = "INSERT INTO products (name, code, image, price) VALUES  ('$n', '$c', '$i', $p);";
 
-    while($row = $q->fetch()){
-        echo "<tr><td>".$row["wid"]."</td><td>" .$row["wname"]."</td><td>".$row["cnt"]."</td></tr>\n";
+        if(!mysqli_query($conn, $query)) echo("<p>Error adding products data.</p>");
     }
-
 ?>
 
-</body>
+    <!-- This is the admin view for the Quick Shopping -->
+    <HTML>
+    <HEAD>
+    <TITLE>Quick Shopping admin</TITLE>
+    <link href="style.css" type="text/css" rel="stylesheet" />
+    </HEAD>
+    <BODY>
+    <h1> Quick Shopping </h1>
+    <h2> Admin View </h2>
+    <a href=""> Go back to shop here </a>
 
-</html>
+    <!-- Input form -->
+    <form action="<?PHP echo $_SERVER['SCRIPT_NAME'] ?>" method="POST">
+        <table border="0">
+            <tr>
+                <td>NAME</td>
+                <td>CODE</td>
+                <td>IMAGE</td>
+                <td>PRICE(2 decimal points)</td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="name" maxlength="45" size="30" value="Havana Hat" required/>
+                </td>
+                <td>
+                    <input type="text" name="code" maxlength="45" size="30" value="abcde" required/>
+                </td>
+                <td>
+                    <input type="text" name="image" maxlength="90" size="60" value="https://asgn2-bucket.s3.amazonaws.com/Havana+Hat.jpg" required/>
+                </td>
+                <td>
+                    <input type="number" min="0.00" step="0.01" name="price" maxlength="45" size="30" value="100.00" required/>
+                </td>
+                <td>
+                    <input type="submit" value="Add Data" />
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <!-- Display table data. -->
+    <table border="1" cellpadding="2" cellspacing="2">
+        <tr>
+            <td>ID</td>
+            <td>NAME</td>
+            <td>CODE</td>
+            <td>IMAGE</td>
+            <td>PRICE</td>
+        </tr>
+
+        <?php
+
+        $result = mysqli_query($conn, "SELECT * FROM products");
+
+        while($query_data = mysqli_fetch_row($result)) {
+            echo "<tr>";
+            echo "<td>",$query_data[0], "</td>",
+            "<td>",$query_data[1], "</td>",
+            "<td>",$query_data[2], "</td>",
+            "<td>",$query_data[3], "</td>",
+            "<td>",$query_data[4], "</td>";
+            echo "</tr>";
+        }
+        ?>
+
+    </table>
+
+    <?php
+
+    mysqli_free_result($result);
+    mysqli_close($conn);
+
+    ?>
+</BODY>
+</HTML>

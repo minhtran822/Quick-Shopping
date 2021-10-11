@@ -1,27 +1,16 @@
 <?php
 
- $db_host   = 'asgn-db.cujhfzahbjmj.us-east-1.rds.amazonaws.com';
 
-	$db_name   = 'sample';
+$db_host = 'asgn-db.cujhfzahbjmj.us-east-1.rds.amazonaws.com';
+$db_name = 'sample';
+$db_user = 'admin';
+$db_passwd = '123456789';
 
-	$db_user   = 'admin';
+$conn = mysqli_connect($db_host, $db_user, $db_passwd, $db_name);
 
-	$db_passwd = '123456789';
+if (!$conn) {
+    echo "Connection error";
+    die("Connection Failed: " . mysqli_connect_error());
+}
 
-	
-
-	$conn = mysqli_connect($db_host, $db_user, $db_passwd, $db_name);
-
-
-
-    if(!$conn){
-
-        echo "Comnection error";
-
-        die("Connection Failed: ".mysqli_connect_error());
-
-    }
-
-    echo "Connection established";
-    
 ?>
