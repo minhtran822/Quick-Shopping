@@ -47,12 +47,19 @@
         }
     }
 ?>
+
+    <!-- This is the admin view for the Quick Shopping -->
+    <!-- Bare function acquired from https://phppot.com/php/simple-php-shopping-cart/ -->
     <HTML>
-    <HEAD>
-    <TITLE>Simple PHP Shopping Cart</TITLE>
+    <HEAD>Quick Shopping</TITLE>
     <link href="style.css" type="text/css" rel="stylesheet" />
     </HEAD>
     <BODY>
+
+    <h1> Quick Shopping </h1>
+    <h2> Welcome to the Quick Shopping online shop </h2>
+    <a href=""> Go to admin view here </a>
+
     <div id="shopping-cart">
     <div class="txt-heading">Shopping Cart</div>
 
