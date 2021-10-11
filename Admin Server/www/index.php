@@ -30,7 +30,7 @@
     <BODY>
     <h1> Quick Shopping </h1>
     <h2> Admin View </h2>
-    <a href=""> Go back to shop here </a>
+    <a href="http://ec2-3-88-70-106.compute-1.amazonaws.com/"> Go back to shop here </a>
 
     <!-- Input form -->
     <form action="<?PHP echo $_SERVER['SCRIPT_NAME'] ?>" method="POST">

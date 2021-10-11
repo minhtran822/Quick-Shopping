@@ -58,7 +58,7 @@
 
     <h1> Quick Shopping </h1>
     <h2> Welcome to the Quick Shopping online shop </h2>
-    <a href=""> Go to admin view here </a>
+    <a href="http://ec2-18-208-115-92.compute-1.amazonaws.com/"> Go to admin view here </a>
 
     <div id="shopping-cart">
     <div class="txt-heading">Shopping Cart</div>
